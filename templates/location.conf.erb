@@ -34,8 +34,12 @@
 <% end -%>
 
     AuthLDAPURL "<%= @ldap_url %>" <%= @ldap_connection_type %>
+<% if @ldap_bind_dn -%>
     AuthLDAPBindDN "<%= @ldap_bind_dn %>"
+<% end -%>
+<% if @ldap_bind_password -%>
     AuthLDAPBindPassword "<%= @ldap_bind_password %>"
+<% end -%>
     AuthzLDAPAuthoritative ON
 </Location>
 

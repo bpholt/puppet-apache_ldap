@@ -1,6 +1,5 @@
 name    'bpholt-apache_ldap'
 version '0.0.1'
-source 'UNKNOWN'
 author 'bpholt'
 license 'Apache License, Version 2.0'
 summary 'Manages Apache conf files for Location directives that need LDAP security.'
