@@ -1,0 +1,29 @@
+<Location <%= @url %>>
+    AuthType Basic
+    AuthName "<%= @realm %>"
+    AuthBasicProvider ldap
+
+    <Limit GET>
+<% @clone_groups.each do |group| -%>
+        Require ldap-group <%= @group %>
+<% end -%>
+<% @clone_users.each do |user| -%>
+        Require ldap-dn <%= @user %>
+<% end -%>
+    </Limit>
+
+    <LimitExcept GET>
+<% @push_groups.each do |group| -%>
+        Require ldap-group <%= @group %>
+<% end -%>
+<% @push_users.each do |user| -%>
+        Require ldap-dn <%= @user %>
+<% end -%>
+    </LimitExcept>
+
+    AuthLDAPURL "<%= @ldap_url %>"
+    AuthLDAPBindDN "<%= @ldap_bind_dn %>"
+    AuthLDAPBindPassword "<%= @ldap_bind_password %>"
+    AuthzLDAPAuthoritative ON
+</Location>
+
