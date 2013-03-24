@@ -14,10 +14,9 @@ include apache_ldap
 apache_ldap::location { 'test':
   url          => '/repository',
   realm        => 'My Repositories',
-  clone_groups => [],
-  clone_users  => [],
-  push_groups  => [],
-  push_users   => [],
+  clone_groups => ['clone_group1','clone_group2',],
+  clone_users  => ['clone_user1','clone_user2',],
+  push_groups  => ['push_group1','push_group2',],
+  push_users   => ['push_user1','push_user2',],
 }
-
 
