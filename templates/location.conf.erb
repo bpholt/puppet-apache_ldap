@@ -5,19 +5,19 @@
 
     <Limit GET>
 <% @clone_groups.each do |group| -%>
-        Require ldap-group <%= @group %>
+        Require ldap-group <%= group %>
 <% end -%>
 <% @clone_users.each do |user| -%>
-        Require ldap-dn <%= @user %>
+        Require ldap-dn <%= user %>
 <% end -%>
     </Limit>
 
     <LimitExcept GET>
 <% @push_groups.each do |group| -%>
-        Require ldap-group <%= @group %>
+        Require ldap-group <%= group %>
 <% end -%>
 <% @push_users.each do |user| -%>
-        Require ldap-dn <%= @user %>
+        Require ldap-dn <%= user %>
 <% end -%>
     </LimitExcept>
 
