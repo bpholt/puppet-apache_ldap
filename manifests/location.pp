@@ -13,11 +13,10 @@ define apache_ldap::location (
   $ldap_bind_password,
   $conf_file = "${title}.conf",
 ) {
-  $confd_base = '/etc/httpd/conf.d'
 
   file { $conf_file:
     ensure  => present,
-    path    => "${confd_base}/${conf_file}",
+    path    => "${apache_ldap::confd_base}/${conf_file}",
     content => template('apache_ldap/location.conf.erb'),
   }
 }

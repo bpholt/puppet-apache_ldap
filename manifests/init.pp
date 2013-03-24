@@ -14,10 +14,12 @@ class apache_ldap (
   $ldap_cache_ttl = 600,
   $ldap_op_cache_entries = 1024,
   $ldap_op_cache_ttl = 600,
+  $confd_base = '/etc/httpd/conf.d',
 ) {
+
   file { 'ldap.conf':
     ensure  => present,
-    path    => '/etc/httpd/conf.d/ldap.conf',
+    path    => "${confd_base}/ldap.conf",
     content => template('apache_ldap/ldap.conf.erb'),
   }
 }
