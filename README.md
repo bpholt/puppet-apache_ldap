@@ -23,9 +23,3 @@ Manages Apache conf files for Location directives that need LDAP security.
       push_users   => ['push_user1','push_user2',],
     }
 
-### Todo
-
-1. Would like to be able to set `Require ldap-attribute objectClass=user` 
-   in the clone or push section, instead of requiring specific groups or
-   users. But how does this interact with the more specific settings?
-

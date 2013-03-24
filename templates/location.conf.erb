@@ -3,25 +3,37 @@
     AuthName "<%= @realm %>"
     AuthBasicProvider ldap
 
+<% if limit_clone -%>
     <Limit GET>
+<% if valid_user_can_clone -%>
+        Require ldap-attribute objectClass=user
+<% else -%>
 <% @clone_groups.each do |group| -%>
         Require ldap-group <%= group %>
 <% end -%>
 <% @clone_users.each do |user| -%>
         Require ldap-dn <%= user %>
 <% end -%>
+<% end -%>
     </Limit>
+<% end -%>
 
+<% if limit_push -%>
     <LimitExcept GET>
+<% if valid_user_can_push -%>
+        Require ldap-attribute objectClass=user
+<% else -%>
 <% @push_groups.each do |group| -%>
         Require ldap-group <%= group %>
 <% end -%>
 <% @push_users.each do |user| -%>
         Require ldap-dn <%= user %>
 <% end -%>
+<% end -%>
     </LimitExcept>
+<% end -%>
 
-    AuthLDAPURL "<%= @ldap_url %>"
+    AuthLDAPURL "<%= @ldap_url %>" <%= @ldap_connection_type %>
     AuthLDAPBindDN "<%= @ldap_bind_dn %>"
     AuthLDAPBindPassword "<%= @ldap_bind_password %>"
     AuthzLDAPAuthoritative ON
